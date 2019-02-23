@@ -40,7 +40,7 @@ ibeg=(jj-1)*n+1;iend=ibeg+n-1;
 plot(xx,perm(ibeg:iend),'-','linewidth',2)
 set(gca,'fontweight','bold','fontsize',14)
 grid on
-title('(c) Manufactured solution of permeability')
+title('(c) Spatially varying soil intrinsic permeability')
 ylabel('[kg s^{-1}]')
 set(gca,'xticklabel',{''})
 

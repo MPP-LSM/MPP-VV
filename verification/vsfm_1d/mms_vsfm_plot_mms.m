@@ -25,7 +25,7 @@ set(gca,'fontweight','bold','fontsize',14)
 grid on
 set(gca,'xticklabel',{})
 ylabel('[m^2]')
-title('(b) Manufactured solution of permeability')
+title('(b) Spatially varying intrinsic soil permeability')
 
 subplot(4,1,3)
 plot(xx,sat,'-','linewidth',2)
@@ -33,6 +33,7 @@ set(gca,'fontweight','bold','fontsize',14)
 grid on
 ylabel('[-]')
 title('(c) Analytical estimate of saturation')
+set(gca,'xticklabel',{})
 
 subplot(4,1,4)
 plot(xx,source,'-','linewidth',2)

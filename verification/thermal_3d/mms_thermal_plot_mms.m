@@ -26,7 +26,7 @@ orient landscape
 gca_pos = get(gca,'Position');
 hp = get(h,'Position');hp(1)=0.88;set(h,'Position',hp);
 set(gca,'Position',gca_pos)
-title(sprintf('(a) Manufactured solution of \ntemperature'))
+title(sprintf('(a) Manufactured solution of temperature'))
 if (save_plot)
     print('-dpdf', [exec_name '_solution.pdf'],'-fillpage')
 end
@@ -48,7 +48,7 @@ orient landscape
 gca_pos = get(gca,'Position');
 hp = get(h,'Position');hp(1)=0.88;set(h,'Position',hp);
 set(gca,'Position',gca_pos)
-title(sprintf('(c) Analytical estimate of \nthe source term'))
+title(sprintf('(c) Analytical estimate of the source term'))
 if (save_plot)
     print('-dpdf', [exec_name '_source.pdf'],'-fillpage')
 end
@@ -61,7 +61,7 @@ slice(x,y,z,reshape(thermal_cond,nn,nn,nn),[.25 .75], .50, [.25 .75]);
 colormap jet
 set(gca,'fontweight','bold','fontsize',24)
 h = colorbar;
-title(h,'[W m^{-1} K^{-1}]')
+title(h,'   [W m^{-1} K^{-1}]')
 xlabel('[m]')
 ylabel('[m]')
 zlabel('[m]')
@@ -70,7 +70,7 @@ orient landscape
 gca_pos = get(gca,'Position');
 hp = get(h,'Position');hp(1)=0.88;set(h,'Position',hp);
 set(gca,'Position',gca_pos)
-th=title(sprintf('(b) Manufactured solutiion of \nthermal conductivity'));
+th=title(sprintf('(b) Spatially varying thermal conductivity'));
 if (save_plot)
     print('-dpdf', [exec_name '_thermal_conductivity.pdf'],'-fillpage')
 end
