@@ -107,7 +107,7 @@ end
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 dxs=X./nxs;
 mms_th_plot_error_norm_and_ooa(X, nxs, comp_soln, manu_soln, problem_dim,...
-    verbose, save_plots, [exec_name '.norm_and_ooa.pdf'])
+    verbose, save_plots, [exec_name '_norm_and_ooa.pdf'])
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Make plot of error between computed and manufactured solution
@@ -116,11 +116,11 @@ mms_th_plot_error_norm_and_ooa(X, nxs, comp_soln, manu_soln, problem_dim,...
 ii = 5;
 dx=X/nxs(ii); xx=[dx/2:dx:X];
 mms_th_plot_error(xx, comp_soln{ii}, manu_soln{ii}, ...
-    save_plots, [exec_name '.error.pdf'])
+    save_plots, [exec_name '_error.pdf'])
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Plot manufactured solutions
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 mms_th_plot_mms(xx, manu_soln{ii}, perm{ii}, source{ii}, ...
-    save_plots, [exec_name '.solution_and_source.pdf'])
+    save_plots, [exec_name '_solution_and_source.pdf'])
 
