@@ -19,6 +19,9 @@ function mms_thermal_driver(varargin)
 %
 %    MMS_THERMAL_DRIVER(..., 'verbose',1) Turns verbosity on
 %
+%    MMS_THERMAL_DRIVER(..., 'fig_dir','<direcotry-to-save-figures>') Specifies the 
+%    direcotry where the figures would be saved
+%
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Problem specific settings
@@ -38,6 +41,7 @@ save_data    = 0;
 read_data    = 0;
 data_file    = '';
 mpp_exec_dir = '';
+fig_dir      = '.';
 
 for ii = 1:2:length(varargin)
     switch lower(varargin{ii})
@@ -52,6 +56,8 @@ for ii = 1:2:length(varargin)
             data_file = varargin{ii+1};
         case 'mpp_exec_dir'
             mpp_exec_dir = varargin{ii+1};
+        case 'fig_dir'
+            fig_dir = varargin{ii+1};
         otherwise
             error(['Unknown argument: ' varargin{ii}]);
     end
@@ -114,7 +120,7 @@ end
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 dxs=X./nxs;
 mms_thermal_plot_error_norm_and_ooa(dxs, e_norm_1, e_norm_2, e_norm_inf, ...
-    verbose, save_plots, [exec_name '_norm_and_ooa.pdf']);
+    verbose, save_plots, [fig_dir '/' exec_name '_norm_and_ooa.pdf']);
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Make plot of error between computed and manufactured solution
@@ -141,4 +147,4 @@ mms_thermal_plot_mms(x,y,z,manu_soln{ii},thermal_cond{ii},source{ii},save_plots,
 % Error between computed and manufactured solution
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 mms_thermal_plot_error(x,y,z, comp_soln{ii}, manu_soln{ii}, ...
-    save_plots, [exec_name '_error.pdf']);
+    save_plots, [fig_dir '/' exec_name '_error.pdf']);

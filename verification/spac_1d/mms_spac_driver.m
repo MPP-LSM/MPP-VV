@@ -19,7 +19,9 @@ function mms_spac_driver(varargin)
 %
 %    MMS_SPAC_DRIVER(..., 'verbose',1) Turns verbosity on
 %
-
+%    MMS_SPAC_DRIVER(..., 'fig_dir','<direcotry-to-save-figures>') Specifies the 
+%    direcotry where the figures would be saved
+%
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Problem specific settings
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -28,6 +30,7 @@ X            = 5;
 grid_factors = 2.^[1:6];
 nxs          = grid_factors*10;
 exec_name    = 'vsfm_spac_mms';
+fig_di       = '.';
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Input arguments
@@ -52,6 +55,8 @@ for ii = 1:2:length(varargin)
             data_file = varargin{ii+1};
         case 'mpp_exec_dir'
             mpp_exec_dir = varargin{ii+1};
+        case 'fig_dir'
+            fig_dir = varargin{ii+1};
         otherwise
             error(['Unknown argument: ' varargin{ii}]);
     end
@@ -105,7 +110,7 @@ end
 % Error norm vs mesh size AND Observed order of accuracy
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 mms_spac_plot_error_norm_and_ooa(X, nxs, comp_soln, manu_soln, problem_dim,...
-    verbose, save_plots, [exec_name '_norm_and_ooa.pdf']);
+    verbose, save_plots, [fig_dir '/' exec_name '_norm_and_ooa.pdf']);
 
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -119,10 +124,10 @@ iprob = 1;
 dx = X/(2^iprob*10);
 
 mms_spac_plot_error(X, dx, nxs(iprob), comp_soln{iprob}, manu_soln{iprob}, ...
-    save_plots, [exec_name '_error.pdf'])
+    save_plots, [fig_dir '/' exec_name '_error.pdf'])
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Manufactured solution: Pressure and Source
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 mms_spac_plot_mms(X, dx, nxs(iprob), manu_soln{iprob}, source{iprob}, ...
-    liq_sat{iprob}, rel_perm{iprob}, save_plots, [exec_name '_solution_and_source.pdf'])
+    liq_sat{iprob}, rel_perm{iprob}, save_plots, [fig_dir '/' exec_name '_solution_and_source.pdf'])

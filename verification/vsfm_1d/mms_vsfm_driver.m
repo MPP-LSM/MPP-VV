@@ -24,6 +24,9 @@ function mms_vsfm_driver(varargin)
 %
 %    MMS_VSFM_DRIVER(..., 'verbose',1) Turns verbosity on
 %
+%    MMS_VSFM_DRIVER(..., 'fig_dir','<direcotry-to-save-figures>') Specifies the 
+%    direcotry where the figures would be saved
+%
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Problem specific settings
@@ -43,6 +46,7 @@ save_data    = 0;
 read_data    = 0;
 data_file    = '';
 mpp_exec_dir = '';
+fig_dir      = '.';
 
 for ii = 1:2:length(varargin)
     switch lower(varargin{ii})
@@ -59,6 +63,8 @@ for ii = 1:2:length(varargin)
             data_file = varargin{ii+1};
         case 'mpp_exec_dir'
             mpp_exec_dir = varargin{ii+1};
+        case 'fig_dir'
+            fig_dir = varargin{ii+1};
         otherwise
             error(['Unknown argument: ' varargin{ii}]);
     end
@@ -127,7 +133,7 @@ end
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 dxs=X./nxs;
 mms_vsfm_plot_error_norm_and_ooa(dxs, e_norm_1, e_norm_2, e_norm_inf, ...
-    problem_type, verbose, save_plots, [exec_name '_problem' num2str(problem_type) '_norm_and_ooa.pdf']);
+    problem_type, verbose, save_plots, [fig_dir '/' exec_name '_problem' num2str(problem_type) '_norm_and_ooa.pdf']);
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Make plot of error between computed and manufactured solution
@@ -136,7 +142,7 @@ mms_vsfm_plot_error_norm_and_ooa(dxs, e_norm_1, e_norm_2, e_norm_inf, ...
 ii=4; dx=X/nxs(ii); xx=[dx/2:dx:X];
 
 mms_vsfm_plot_error(xx, comp_soln{ii}, manu_soln{ii}, ...
-    save_plots, [exec_name '_problem' num2str(problem_type) '_error.pdf']);
+    save_plots, [fig_dir '/' exec_name '_problem' num2str(problem_type) '_error.pdf']);
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Plot manufactured solutions
@@ -144,5 +150,5 @@ mms_vsfm_plot_error(xx, comp_soln{ii}, manu_soln{ii}, ...
 ii = 4;dx=X/nxs(ii);xx=[dx/2:dx:X];
 
 mms_vsfm_plot_mms(xx,manu_soln{ii},perm{ii},sat{ii},source{ii}, save_plots, ...
-    [exec_name '_problem' num2str(problem_type) '_solution_and_source.pdf']);
+    [fig_dir '/' exec_name '_problem' num2str(problem_type) '_solution_and_source.pdf']);
 
